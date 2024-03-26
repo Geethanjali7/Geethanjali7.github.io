@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Churn Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="int"]{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="radio"]
+        {    cursor: pointer;
+        }
+        
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .btn{width: 100%;
+            background-color: Green;
+            color: black;
+            border: 1px solid #ccc;
+            padding:10px;
+              border-radius: 5px;
+            margin: 7px 0;
+             box-sizing: border-box;
+        }
+        .btn:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        .submit-button {
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Churn Prediction</h2>
+        <form action="/prediction" method="post">
+            <label for="Age">Age:</label>
+            <input type="int" name="Age" required>
+            
+            <label for="DistanceFromHome">Distance From Home:</label>
+            <input type="int" name="DistanceFromHome" required>
+
+            <label for="EnvironmentSatisfaction">Environment Satisfaction:</label>
+            <input type="radio" name="EnvironmentSatisfaction" value="1" required>Low
+            <input type="radio" name="EnvironmentSatisfaction" value="2" required>Medium
+            <input type="radio" name="EnvironmentSatisfaction" value="3" required>High
+            <input type="radio" name="EnvironmentSatisfaction" value="4" required>Very High
+
+            <label for="JobInvolvement">Job Involvement:</label>
+            <input type="radio" name="JobInvolvement" value="1" required>Low
+            <input type="radio" name="JobInvolvement" value="2" required>Medium
+            <input type="radio" name="JobInvolvement" value="1" required>High
+            <input type="radio" name="JobInvolvement" value="1" required>Very High
+
+            <label for="JobLevel">Job Level:</label>
+            <input type="radio" name="JobLevel" value="1" required>Level-1
+            <input type="radio" name="JobLevel" value="2" required>Level-2
+            <input type="radio" name="JobLevel" value="3" required>Level-3
+            <input type="radio" name="JobLevel" value="4" required>Level-4
+            <input type="radio" name="JobLevel" value="5" required>Level-5
+
+            <label for="JobRole">Job Role:</label>
+            <input type="radio" name="JobRole" value="0" required>Healthcare Representative<br>
+            <input type="radio" name="JobRole" value="1" required>Human Resources<br>
+            <input type="radio" name="JobRole" value="2" required>Laboratory Technician<br>
+            <input type="radio" name="JobRole" value="3" required>Manager<br>
+            <input type="radio" name="JobRole" value="4" required>Manufacturing Director<br>
+            <input type="radio" name="JobRole" value="5" required>Research Director<br>
+            <input type="radio" name="JobRole" value="6" required>Research Scientist<br>
+            <input type="radio" name="JobRole" value="7" required>Sales Executive<br>
+            <input type="radio" name="JobRole" value="8" required>Sales Representative<br>
+
+            <label for="JobSatisfaction">Job Satisfaction:</label>
+            <input type="radio" name="JobSatisfaction" value="1" required>Low
+            <input type="radio" name="JobSatisfaction" value="2" required>Medium
+            <input type="radio" name="JobSatisfaction" value="3" required>High
+            <input type="radio" name="JobSatisfaction" value="4" required>Very High
+
+            <label for="MonthlyIncome">Monthly Income:</label>
+            <input type="int" name="MonthlyIncome" required>
+
+            <label for="NumCompaniesWorked">Num Companies Worked:</label>
+            <input type="int" name="NumCompaniesWorked" required>
+
+            <label for="OverTime">Working Over Time?</label>
+            <input type="radio" name="OverTime" value="1" required>Yes
+            <input type="radio" name="OverTime" value="0" required>No
+
+            <label for="PercentSalaryHike">Percent Salary Hike:</label>
+            <input type="int" name="PercentSalaryHike" required>
+
+            <label for="PerformanceRating">Performance Rating:</label>
+            <input type="radio" name="PerformanceRating" value="1" required>Low
+            <input type="radio" name="PerformanceRating" value="2" required>Good
+            <input type="radio" name="PerformanceRating" value="3" required>Excellent
+            <input type="radio" name="PerformanceRating" value="4" required>Outstanding
+
+            <label for="RelationshipSatisfaction">Relationship Satisfaction:</label>
+            <input type="radio" name="RelationshipSatisfaction" value="1" required>Low
+            <input type="radio" name="RelationshipSatisfaction" value="2" required>Medium
+            <input type="radio" name="RelationshipSatisfaction" value="3" required>High
+            <input type="radio" name="RelationshipSatisfaction" value="4" required>Very High
+
+            <label for="StockOptionLevel">Stock Option Level:</label>
+            <input type="radio" name="StockOptionLevel" value="0" required>StockOptionLevel-0<br>
+            <input type="radio" name="StockOptionLevel" value="1" required>StockOptionLevel-1<br>
+            <input type="radio" name="StockOptionLevel" value="2" required>StockOptionLevel-2<br>
+            <input type="radio" name="StockOptionLevel" value="3" required>StockOptionLevel-3<br>
+
+            <label for="TotalWorkingYears">Total Working Years:</label>
+            <input type="int" name="TotalWorkingYears" required>
+
+            <label for="TrainingTimesLastYear">Training Times Last Year:</label>
+            <input type="int" name="TrainingTimesLastYear" placeholder="HOURS SPENT TRAINING" required>
+
+            <label for="WorkLifeBalance">Work Life Balance:</label>
+            <input type="radio" name="WorkLifeBalance" value="1" required>Bad
+            <input type="radio" name="WorkLifeBalance" value="2" required>Good
+            <input type="radio" name="WorkLifeBalance" value="3" required>Better
+            <input type="radio" name="WorkLifeBalance" value="4" required>Best
+
+
+            <label for="YearsAtCompany">Years At Company:</label>
+            <input type="int" name="YearsAtCompany" required>
+
+            <label for="YearsInCurrentRole">Years In Current Role:</label>
+            <input type="int" name="YearsInCurrentRole" required>
+
+            <label for="YearsSinceLastPromotion">Years Since Last Promotion:</label>
+            <input type="int" name="YearsSinceLastPromotion" required>
+
+            <label for="YearsWithCurrManager">Years With Curr Manager:</label>
+            <input type="int" name="YearsWithCurrManager" required>
+
+            <input type="submit" class="btn" value="Predict">
+        </form>
+        <div class="output">
+        <div class="output">
+    {% if prediction %}
+        <p>Chances of leaving the company: {{ prediction }}%</p>
+    {% endif %}
+</div>
+
+</div>
+
+         
+        </div>
+    </div>
+</body>
+</html>
